@@ -49,13 +49,13 @@ namespace MemberPortal.Controllers
                 //context.DrugDetails.Add(drug);
                 //context.SaveChanges();
 
-                return View("DrugDetailsid");
+                return View("DrugDetailsid",drug);
             }
             return View();
 
         }
         [HttpPost]
-        public IActionResult DrugDetailsid()
+        public IActionResult DrugDetailsid(Drug obj)   //Drug obj
         {
             return View();
         }
@@ -65,21 +65,23 @@ namespace MemberPortal.Controllers
             string drugname = obj.Name;
             //string Token = HttpContext.Request.Cookies["Token"];
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Drugs/GetDrugDetailByName/" + drugname).Result;
+            //HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Drugs/GetDrugDetailByName/" + drugname).Result;
+            HttpResponseMessage response = client.GetAsync("api/Drugs/GetDrugDetailByName/" + drugname).Result;
             if (response.IsSuccessStatusCode)
             {
                 string scheduleData = response.Content.ReadAsStringAsync().Result;
                 Drug drug = JsonConvert.DeserializeObject<Drug>(scheduleData);
-                context.DrugDetails.Add(drug);
-                context.SaveChanges();
+                //context.DrugDetails.Add(drug);
+                //context.SaveChanges();
 
+                //return View("DrugDetailsname", drug);
                 return View("DrugDetailsname", drug);
             }
             return View();
 
         }
         [HttpPost]
-        public IActionResult DrugDetailsname(Drug obj)
+        public IActionResult DrugDetailsname(Drug obj)    //Drug obj
         {
             return View();
         }
@@ -88,18 +90,21 @@ namespace MemberPortal.Controllers
         {
             //string Token = HttpContext.Request.Cookies["Token"];
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Drugs/" + id + "/" + loc).Result;
+            //HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Drugs/" + id + "/" + loc).Result;
+            HttpResponseMessage response = client.GetAsync("api/Drugs/" + id + "/" + loc).Result;
             if (response.IsSuccessStatusCode)
             {
                 string scheduleData = response.Content.ReadAsStringAsync().Result;
                 IEnumerable<Drugloc> drug = JsonConvert.DeserializeObject<List<Drugloc>>(scheduleData);
-                return View("DrugDetailsall", drug);
+                //return View("DrugDetailsall", drug);
+
+                return View("DrugDetailsall",drug);
             }
             return View();
 
         }
         [HttpPost]
-        public IActionResult DrugDetailsall(Drugloc obj)
+        public IActionResult DrugDetailsall(Drugloc obj)    //Drugloc obj
         {
             return View();
         }
