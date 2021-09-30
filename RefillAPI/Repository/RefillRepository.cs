@@ -70,7 +70,9 @@ namespace RefillAPI.Repository
 
             string data = JsonConvert.SerializeObject(subscription_id);
 
-            Uri baseAddress = new Uri("http://localhost:20430/Subscription/ViewDetails_BySubID/" + subscription_id);
+            // Uri baseAddress = new Uri("http://localhost:20430/Subscription/ViewDetails_BySubID/" + subscription_id);
+            string str = Convert.ToString("http://localhost:20430");
+            Uri baseAddress = new Uri(str);
             HttpClient client = new HttpClient();
             client.BaseAddress = baseAddress;
 
@@ -106,16 +108,16 @@ namespace RefillAPI.Repository
                 int month = date.Month;
                 int nxtmonth = month + 1;
 
-                while (month != nxtmonth)
+                 while(month != nxtmonth)
                 {
 
 
                     RefillDetails refill = new RefillDetails();
                     refill.Subscription_ID = subscription_id;
 
-                    date = date.AddDays(7);
+                    date = date.AddDays(7.0);
                     refill.RefillDate = date;
-                    refill.NextRefillDate = date.AddDays(7);
+                    refill.NextRefillDate = date.AddDays(7.0);
                     Pending.Add(refill);
                     month = date.Month;
 
@@ -171,6 +173,7 @@ namespace RefillAPI.Repository
                     return (detail);
                 }
                 return ("Unavailable");
+               
 
 
             }

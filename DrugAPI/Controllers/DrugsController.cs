@@ -82,10 +82,10 @@ namespace DrugAPI.Controllers
         /// <returns></returns>
 
         [HttpGet("{id}/{loc}")]
-        public IActionResult getDispatchableDrugStock(int drug_id, string drug_loc)
+        public IActionResult getDispatchableDrugStock(int id, string loc)
         {
             
-            var drug = _drug.GetDispatchableDrugStock(drug_id, drug_loc);
+            var drug = _drug.GetDispatchableDrugStock(id,loc);
             if (drug == null)
                 return null;
             return Ok(drug);

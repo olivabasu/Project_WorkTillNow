@@ -6,10 +6,30 @@
 
 <h1 class="text-center">Hi @ViewBag.msg!</h1>
 
-<hr/> 
+<hr />
 
 <div class="text-center">
     <a class="btn btn-primary btn-lg btn-block" asp-area="" asp-controller="MDrugs" asp-action="Index"> Drugs </a>
+</div>
+<br />
+<div class="text-center">
+    <a class="btn btn-primary btn-lg btn-block" asp-area="" asp-controller="MSubscription" asp-action="Index"> Subscribe  </a>
+</div>
+<br />
+<div class="text-center">
+    <a class="btn btn-primary btn-lg btn-block" asp-area="" asp-controller="MSubscription" asp-action="Index1"> Unsubscribe  </a>
+</div>
+<br />
+<div class="text-center">
+    <a class="btn btn-primary btn-lg btn-block" asp-area="" asp-controller="MRefill" asp-action="Index"> View Refill Details </a>
+</div>
+<br />
+<div class="text-center">
+    <a class="btn btn-primary btn-lg btn-block" asp-area="" asp-controller="MRefill" asp-action="IndexDue"> Check Pending Refills </a>
+</div>
+<br />
+<div class="text-center">
+    <a class="btn btn-primary btn-lg btn-block" asp-area="" asp-controller="MRefill" asp-action="IndexAdhoc"> Place Refill by Location </a>
 </div>
 
 

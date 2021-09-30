@@ -1,0 +1,36 @@
+﻿@model MemberPortal.Models.Drugloc
+
+@{
+    ViewData["Title"] = "Drug by Location";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 class="text-success">Check Drug availability by ID and Location</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="GetByAll">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <label id="drugid" class="text-primary"> Enter Drug ID</label>
+            <div class="form-group">
+
+                <input id="drugid" asp-for="Drug_Id" class="form-control" />
+                <span asp-validation-for="Drug_Id" class="text-danger"></span>
+            </div>
+
+            <label id="drugloc" class="text-primary"> Enter Location</label>
+            <div class="form-group">
+
+                <input id="drugloc" asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+</div>
+

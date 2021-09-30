@@ -95,7 +95,7 @@ namespace RefillAPI.Controllers
         /// <param name="order"></param>
         /// <returns></returns>
         [HttpPost("requestAdhocRefill")]
-        public IActionResult requestAdhocRefill([FromBody] RefillOrderLine order)
+        public dynamic requestAdhocRefill([FromBody] RefillOrderLine order)
         {
             /*if (HttpContext == null)
             {
@@ -108,13 +108,18 @@ namespace RefillAPI.Controllers
             _log4net.Info(" Http POST request for Adhoc Refill Status");*/
 
             RefillDetails details = new RefillDetails();
-            details = _refill.requestAdhocRefill(order);
-            if (details == null)
+            try
             {
-                return null;
+                details = _refill.requestAdhocRefill(order);
+                if (details == null)
+                {
+                    return null;
+                }
+                return Ok(details);
+            }catch(Exception e)
+            {
+                return "Unavailable";
             }
-            return Ok(details);
-
 
         }
 

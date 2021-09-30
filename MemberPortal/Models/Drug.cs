@@ -18,6 +18,8 @@ namespace MemberPortal.Models
         public int UnitPackage { get; set; }
         //public string Location { get; set; }
         public double Quantity { get; set; }//drug details(ID, location, quantity)
+        public Drugloc drugLocation { get; set; }
+
 
     }
 }

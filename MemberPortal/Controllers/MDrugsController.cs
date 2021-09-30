@@ -86,19 +86,21 @@ namespace MemberPortal.Controllers
             return View();
         }
 
-        public ActionResult GetByAll(int id, string loc)
+        public ActionResult GetByAll(Drugloc drug)  //int id, string loc,
         {
             //string Token = HttpContext.Request.Cookies["Token"];
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
             //HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Drugs/" + id + "/" + loc).Result;
-            HttpResponseMessage response = client.GetAsync("api/Drugs/" + id + "/" + loc).Result;
+            HttpResponseMessage response = client.GetAsync("api/Drugs/" + drug.Drug_Id + "/" + drug.Location).Result;
             if (response.IsSuccessStatusCode)
             {
                 string scheduleData = response.Content.ReadAsStringAsync().Result;
-                IEnumerable<Drugloc> drug = JsonConvert.DeserializeObject<List<Drugloc>>(scheduleData);
+                IEnumerable<Drugloc> drug1 = JsonConvert.DeserializeObject<List<Drugloc>>(scheduleData);
                 //return View("DrugDetailsall", drug);
 
-                return View("DrugDetailsall",drug);
+                //drug is null --error
+
+                return View("DrugDetailsall",drug1);
             }
             return View();
 
